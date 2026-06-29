@@ -312,6 +312,10 @@ function ReceiptModal({ isOpen, onClose, receipt }) {
                   <span className="text-brand-muted font-bold uppercase tracking-widest text-[9px]">Branch</span>
                   <span className="font-bold text-main">{receipt.Branch?.name || "PC Alley Main"}</span>
                 </div>
+                <div className="flex justify-between items-center text-xs">
+                  <span className="text-brand-muted font-bold uppercase tracking-widest text-[9px]">Customer Name</span>
+                  <span className="font-bold text-main">{receipt.customerName || receipt.customer_name || "Walk-in Customer"}</span>
+                </div>
                 {receipt.paymentMethod === "cash" && (
                   <>
                     <div className="flex justify-between items-center text-xs">
@@ -1278,7 +1282,7 @@ export default function SalesPage() {
                     </div>
 
                     {/* Meta Detail Info */}
-                    <h3 className="text-sm font-rajdhani font-black text-main uppercase tracking-wide leading-tight line-clamp-1 capitalize">
+                    <h3 className="text-sm font-rajdhani font-black text-main uppercase tracking-wide leading-tight line-clamp-1">
                       {item.Product.name}
                     </h3>
                     <p className="text-[9px] font-mono text-brand-muted tracking-wider mb-2">
@@ -1736,7 +1740,7 @@ export default function SalesPage() {
                           </div>
 
                           <div>
-                            <label className="block text-[10px] font-black uppercase tracking-widest text-brand-muted mb-2 font-bold">
+                            <label className="block text-[10px] font-black uppercase tracking-widest text-brand-muted mb-2">
                               {t[language].receiptSlip}
                             </label>
                             {proofFile ? (
@@ -1782,7 +1786,7 @@ export default function SalesPage() {
 
                           {/* Cash Drawer cashier inputs */}
                           <div>
-                            <label className="block text-[10px] font-black uppercase tracking-widest text-brand-muted mb-2 font-bold">
+                            <label className="block text-[10px] font-black uppercase tracking-widest text-brand-muted mb-2">
                               {t[language].cashReceived}
                             </label>
                             <input
@@ -2116,7 +2120,7 @@ export default function SalesPage() {
 
                 {/* Theme Accent Color */}
                 <div>
-                  <label className="block text-[10px] font-black uppercase tracking-widest text-brand-muted mb-2 font-bold font-sans">
+                  <label className="block text-[10px] font-black uppercase tracking-widest text-brand-muted mb-2 font-sans">
                     {t[language].accentColor}
                   </label>
                   <div className="grid grid-cols-2 gap-2.5">
@@ -2197,7 +2201,7 @@ export default function SalesPage() {
             >
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <p className="text-[9px] font-black uppercase tracking-[3px] text-brand-muted mb-1 font-bold">New Record</p>
+                  <p className="text-[9px] font-black uppercase tracking-[3px] text-brand-muted mb-1">New Record</p>
                   <h2 className="text-lg font-rajdhani font-black uppercase text-main">Add Customer</h2>
                 </div>
                 <button
@@ -2216,7 +2220,7 @@ export default function SalesPage() {
                   { label: "Address", key: "address", type: "text", placeholder: "e.g. 123 Main St, Manila" },
                 ].map(({ label, key, type, placeholder }) => (
                   <div key={key}>
-                    <label className="block text-[10px] font-black uppercase tracking-[2px] text-brand-muted mb-2 font-bold font-sans">
+                    <label className="block text-[10px] font-black uppercase tracking-[2px] text-brand-muted mb-2 font-sans">
                       {label}
                     </label>
                     <input
@@ -2239,7 +2243,7 @@ export default function SalesPage() {
                 {/* Branch selector — super admin only */}
                 {user?.role === "super_admin" && branches.length > 0 && (
                   <div>
-                    <label className="block text-[10px] font-black uppercase tracking-[2px] text-brand-muted mb-2 font-bold font-sans">Branch</label>
+                    <label className="block text-[10px] font-black uppercase tracking-[2px] text-brand-muted mb-2 font-sans">Branch</label>
                     <select
                       value={customerFormData.branchId || ""}
                       onChange={e => setCustomerFormData(prev => ({ ...prev, branchId: e.target.value }))}
